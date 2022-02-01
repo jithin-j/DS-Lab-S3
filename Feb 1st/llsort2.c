@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
 struct node
 {
     int marks;
-    char name[50];
     struct node *next;
 };
 struct node *front;
@@ -17,15 +14,13 @@ void sort();
 void main()
 {
     int n, mark;
-    char name[50];
     printf("Enter the number of students \n");
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
-        printf("Enter the name and marks of students: \n");
-        scanf("%s", name);
+        printf("Enter the marks of students: ");
         scanf("%d", &mark);
-        insert(mark, name);
+        insert(mark);
     }
     printf("Marks before sorting: \n");
     display();
@@ -35,7 +30,7 @@ void main()
     printf("\n");
 }
 
-void insert(int mark, char name[])
+void insert(int mark)
 {
     struct node *ptr;
 
@@ -47,7 +42,6 @@ void insert(int mark, char name[])
     else
     {
         ptr->marks = mark;
-        strcpy(ptr->name, name);
         if (front == NULL)
         {
 
@@ -77,7 +71,7 @@ void display()
     {
         while (ptr != NULL)
         {
-            printf("%s %d, ", ptr->name, ptr->marks);
+            printf("%d ", ptr->marks);
             ptr = ptr->next;
         }
     }
@@ -86,7 +80,6 @@ void display()
 void sort()
 {
     struct node *ptr, *nextnode;
-    char tempname[50];
     ptr = front;
     while (ptr != NULL)
     {
@@ -96,11 +89,8 @@ void sort()
             if (ptr->marks < nextnode->marks)
             {
                 int temp = ptr->marks;
-                strcpy(tempname, ptr->name);
                 ptr->marks = nextnode->marks;
-                strcpy(ptr->name, nextnode->name);
                 nextnode->marks = temp;
-                strcpy(nextnode->name, tempname);
             }
             nextnode = nextnode->next;
         }

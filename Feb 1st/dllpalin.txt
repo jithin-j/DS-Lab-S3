@@ -1,0 +1,61 @@
+Q) Create a Doubly Linked List from a string taking each character from the string. Check if the given string is palindrome in an efficient method.
+
+
+Algorithm
+
+step1: Start
+step2: Define a structure with character data field ch and 2 pointer fields next & prev.
+step3: Initialize pointers head and tail, both, to NULL.
+step4: Declare character array str[] and integer variables i,n.
+step5: Input string str[] from user.
+step6: for i=0 upto str[i]!='\0'
+	insert each character to doubly linked list.
+step7: procedure insertend: item
+	1.Start
+	2.procedure create: item
+		1.Start
+		2.Declare struct pointer node dynamically.
+		3.node->ch=item
+		4.node->prev=NULL
+		5.node->next=NULL
+		6.return node
+		7.End procedure
+	3.if(head==NULL)
+		head=tail=node;
+		head->prev=NULL;
+		tail->next=NULL;
+	4.else
+		tail->next=node;
+		node->prev=tail;
+		tail=node;
+		tail->next=NULL;
+	5.End procedure.
+step8: procedure display
+	1.Start
+	2.Initialize temp pointer to head.
+	3.if(head==NULL)
+		print List empty
+	4.while(temp!=NULL)
+		print temp->ch
+		temp=temp->next
+	5.End procedure.
+step9: procedure checkPalin
+	1.Start
+	2.Initialize pointers temp1=head, temp2=tail
+	3.while(temp1!=NULL && temp2!=NULL)
+		if(temp1->ch != temp2->ch)
+			return 0;
+		else
+			temp1=temp1->next;
+			temp2=temp2->prev;
+	4.return 1
+	5.End procedure.
+step10: Store value returned by checkPalin() to n.
+step11: if(n==1)   
+	  print str is a palindrome
+step12: else if(n==0)   
+	  print str is not a palindrome
+step13: else
+	  print Invalid!!!Try again...
+step14: Stop
+	

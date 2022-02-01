@@ -1,0 +1,98 @@
+Step 1: Start.
+
+Step 2: Define user defined datatype node consisting of marks and next pointer 
+
+Step 3: Initialise front and rear
+
+Step 4: Define Insert
+        {
+            Step 4.1: initialise struct node *ptr
+            Step 4.2: allocate memory for ptr using malloc
+            Step 4.3: intialise int item
+            Step 4.4: get value for item from user
+            Step 4.5:if (ptr is equal to NULL)
+                        {
+                            print ("Stack Overflow \n")
+                        }
+                    END if
+            Step 4.6:else
+                    {
+                        ptr->data = item;
+                        if (front is equal to NULL)
+                        {
+                            front = ptr;
+                            rear = ptr;
+                            front->next = NULL;
+                            rear->next = NULL;
+                        }
+                        END if
+                        else
+                        {
+                            rear->next = ptr;
+                            rear = ptr;
+                            rear->next = NULL;
+                        }
+                        END else
+                    }
+                    END else
+        }
+
+Step 5: Define display()
+            {
+                Step 5.1: Initialise struct node *ptr
+                Step 5.2: ptr = front;
+                Step 5.3: if (front equals NULL)
+                            {
+                                print("Empty Queue \n")
+                            }
+                          END if
+                Step 5.4: else
+                            {
+                                while (ptr not equal to NULL)
+                                {
+                                    printf("%d ", ptr->data);
+                                    ptr = ptr->next;
+                                }
+                            }
+            }
+
+Step 6: Define sort() {
+    Step 6.1: Initialise struct node *ptr, *nextnode;
+    Step 6.2: ptr = front;
+    Step 6.3: while (ptr != NULL)
+                {
+                    nextnode = ptr->next;
+                    while (nextnode != NULL)
+                    {
+                        if (ptr->marks less than nextnode->marks)
+                        {
+                            int temp = ptr->marks;
+                            ptr->marks = nextnode->marks;
+                            nextnode->marks = temp;
+                        }
+                        nextnode = nextnode->next;
+                    }
+                    ptr = ptr->next;
+                }
+    }
+
+Step 7: Define main()
+        {
+            Step 7.1: intialise n, mark;
+            Step 7.2: Get the number of students from user
+            Step 7.3: for (int i = 0; i < n; i++)
+            {
+                printf("Enter the marks of students: ");
+                scanf("%d", &mark);
+                insert(mark);
+            }
+            Step 7.4: END for loop
+            Step 7.5: print("Marks before sorting: \n")
+            Step 7.6: Call display();
+            Step 7.7: Call sort();
+            Step 7.8: print("\nMarks after sorting: \n")
+            Step 7.9: Call display();
+            Step 7.10: print("\n")
+        }
+
+Step 8: END

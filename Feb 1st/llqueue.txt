@@ -1,0 +1,103 @@
+Step 1: Start.
+
+Step 2: Define user defined datatype node consisting of data and next pointer 
+
+Step 3: Initialise front and rear
+
+Step 4: Define Insert
+        {
+            Step 4.1: initialise struct node *ptr
+            Step 4.2: allocate memory for ptr using malloc
+            Step 4.3: intialise int item
+            Step 4.4: get value for item from user
+            Step 4.5:if (ptr is equal to NULL)
+                        {
+                            print ("Stack Overflow \n")
+                        }
+                    END if
+            Step 4.6:else
+                    {
+                        ptr->data = item;
+                        if (front is equal to NULL)
+                        {
+                            front = ptr;
+                            rear = ptr;
+                            front->next = NULL;
+                            rear->next = NULL;
+                        }
+                        END if
+                        else
+                        {
+                            rear->next = ptr;
+                            rear = ptr;
+                            rear->next = NULL;
+                        }
+                        END else
+                    }
+                    END else
+        }
+Step 5: Define delete()
+            {
+                Step5.1: Initialise struct node *ptr
+                Step5.2: if (front equals to NULL)
+                            {
+                                print("Underflow \n")
+                            }
+                        END if
+                Step5.3: else
+                            {
+                                ptr = front;
+                                front = front->next;
+                                free(ptr);
+                            }
+                        END else
+            }
+Step 6: Define display()
+            {
+                Step 6.1: Initialise struct node *ptr
+                Step 6.2: ptr = front;
+                Step 6.3: if (front equals NULL)
+                            {
+                                print("Empty Queue \n")
+                            }
+                          END if
+                Step 6.4: else
+                            {
+                                while (ptr not equal to NULL)
+                                {
+                                    printf("%d ", ptr->data);
+                                    ptr = ptr->next;
+                                }
+                            }
+            }
+Step 7: Define main(){
+            Step 7.1: intialise choice
+            Step 7.2: print("1.Insert into queue \n2.Delete from queue \n3.Delete from queue \n4.Exit \n")
+            Step 7.3: Get choice input from user
+            Step 7.4: while (choice not equals 4)
+                        {
+                            switch (choice)
+                            {
+                            case 1:
+                                Call insert() function and display results
+                                break;
+
+                            case 2:
+                                Call delete() function and display results
+                                break;
+
+                            case 3:
+                                display();
+                                break;
+
+                            case 4:
+                                break;
+                            default:
+                                print("Please enter correct choice \n")
+                            }
+                            printf("\n1.Insert into queue \n2.Delete from queue \n3.Display the queue \n4.Exit \n");
+                            scanf("%d", &choice);
+                        }
+}
+
+Step 8: END
