@@ -1,0 +1,178 @@
+Step 1: Start.
+
+Step 2: Define user defined datatype node consisting of int coefficient and exponent and a pointer next of type node.
+
+Step 3: Define Node *getNode(int data, int power)
+        {
+            Step 3.1: Node *ref = (Node *)malloc(sizeof(Node));
+            Step 3.2: if (ref == NULL)
+                        {
+                            return NULL;
+                        }
+            Step 3.3: end if
+            Step 3.4: ref->data = data;
+            Step 3.5: ref->power = power;
+            Step 3.6: ref->next = NULL;
+            Step 3.7: return ref;
+        }
+
+Step 4: Define void updateRecord(Node *ref, int data, int power)
+            {
+                Step 4.1: ref->data = data;
+                Step 4.2: ref->power = power;
+            }
+Step 5: typedef struct MultiplyPolynomial
+            {
+                struct Node *head;
+            } MultiplyPolynomial;
+
+Step 6: Define MultiplyPolynomial *getMultiplyPolynomial()
+        {
+           Step 6.1: MultiplyPolynomial *ref = (MultiplyPolynomial *)malloc(sizeof(MultiplyPolynomial));    
+           Step 6.2: if (ref == NULL)
+            {
+                return NULL;
+            }
+           Step 6.3: End if
+           Step 6.4: ref->head = NULL;
+           Step 6.5: return ref;
+        }
+
+Step 7: Define void insert(MultiplyPolynomial *ref, int data, int power)
+        {
+            Step 7.1: if the linked list is empty
+            {
+                ref->head = getNode(data, power);
+            }
+            Step 7.2: End if 
+            Step 7.3: else
+                {
+                    Node *node = NULL;
+                    Node *temp = ref->head;
+                    Node *location = NULL;
+                    while (temp != NULL && temp->power >= power)
+                    {
+                        location = temp;
+                        temp = temp->next;
+                    }
+                    if (location != NULL && location->power == power)
+                    {
+                        location->data = location->data + data;
+                    }
+                    End if
+                    else
+                    {
+                        node = getNode(data, power);
+                        if (location == NULL)
+                        {
+                            node->next = ref->head;
+                            ref->head = node;
+                        }
+                        End if
+                        else
+                        {
+                            node->next = location->next;
+                            location->next = node;
+                        }
+                    }
+                }
+            Step 7.4: End else statement
+        }
+
+Step 8: Define MultiplyPolynomial *multiplyPolynomials(MultiplyPolynomial *ref, MultiplyPolynomial *other)
+            {
+                Step 8.1: MultiplyPolynomial *result = getMultiplyPolynomial();
+                Step 8.2: Node *poly1 = ref->head;
+                Step 8.3: Node *temp = other->head;
+                Step 8.4: initialise power_value = 0;
+                Step 8.5: initialise coefficient = 0;
+                Step 8.6: while (poly1 not equal to NULL)
+                {
+                    temp = other->head;
+                    while temp not equal to NULL
+                    {
+                        power_value = poly1->power + temp->power;
+                        coefficient = poly1->data * temp->data;
+                        insert(result, coefficient, power_value);
+                        temp = temp->next;
+                    }
+                    poly1 = poly1->next;
+                } 
+                Step 8.7: End While loop 
+                Step 8.8: return result;
+            }
+
+Step 9: Define void display(MultiplyPolynomial *ref)
+        {
+            Step 9.1: if (ref->head equals to NULL)
+            {
+                print("Empty Polynomial ");
+            }
+            Step 9.1: print(" ");
+            Step 9.2: Node *temp = ref->head;
+            Step 9.3: while (temp not equal to NULL)
+                {
+                    if (temp not equal to ref->head)
+                    {
+                        print(temp->data);
+                    }
+                    End if
+                    else
+                    {
+                        print(temp->data);
+                    }
+                    if (temp->power not equal to 0)
+                    {
+                        print(temp->power);
+                    }
+                    End if 
+                    temp = temp->next;
+                }
+            Step 9.4: printf("\n");
+        }
+
+Step 10: Define int main()
+    {
+        Step 10.1: initialise n, x, y;
+        Step 10.2: MultiplyPolynomial *a = getMultiplyPolynomial();
+        Step 10.3: MultiplyPolynomial *b = getMultiplyPolynomial();
+        Step 10.4: print("1. Insert into polynomial A \n2. Insert into polynomial B\n3. Display the polynomials\n4. Multiply the polynomials \n5.Exit\n");
+        Step 10.5: scan option
+        Step 10.6: while (option not equal to 5)
+            {
+                switch (option)
+                {
+                case 1:
+                    print("Enter Coeffecient: ");
+                    scan x
+                    print("Enter Exponent ");
+                    scan y
+                    call insert(a, x, y) function
+                    break;
+                case 2:
+                    print("Enter Coeffecient: ");
+                    scan x
+                    print("Enter Exponent ");
+                    scan y
+                    call insert(b, x, y) function;
+                    break;
+                case 3:
+                    print("\n Polynomial A\n");
+                    call display(a) function;
+                    print(" Polynomial B\n");
+                    call display(b) function;
+                    break;
+                case 4:;
+                    MultiplyPolynomial *result = return value of function multiplyPolynomials(a, b);
+                    printf(" Result\n");
+                    call display(result) function;
+                    break;
+                default:
+                    printf("Please enter correct choice\n");
+                }
+            print("1. Insert into polynomial A \n2. Insert into polynomial B\n3. Display the polynomials\n4. Multiply the polynomials \n5.Exit\n");
+            scanf("%d", &n);
+        }
+    }
+
+Step 11: Stop

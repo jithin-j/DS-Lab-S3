@@ -1,0 +1,109 @@
+Step 1: Start.
+
+Step 2: Define user defined datatype node consisting of int coefficient and exponent and a pointer next of type node.
+
+Step 3: Defining readPolynomial function
+	Step 3.1 initialize coeff, exp, cont;
+    Step 3.2 struct Node *temp = (struct Node *)malloc(sizeof(struct Node));
+    Step 3.3 *poly = temp;
+    Step 3.4 do
+                {
+                    print("\n Coeffecient: ");
+                    scanf("%d", &coeff);
+                    print("\n Exponent: ");
+                    scanf("%d", &exp);
+                    temp->coeff = coeff;
+                    temp->pow = exp;
+                    temp->next = NULL;
+                    print("\nHave more terms? 1 for y and 0 for no: ");
+                    scanf("%d", &cont);
+                    if (cont)
+                    {
+                        temp->next = (struct Node *)malloc(sizeof(struct Node));
+                        temp = temp->next;
+                        temp->next = NULL;
+                    }
+                } while cont is not 0
+            End do-while loop
+
+Step 4: Defining Addition function
+	Step 4.1: struct Node *temp = (struct Node *)malloc(sizeof(struct Node));
+    Step 4.2: temp->next = NULL;
+    Step 4.3: *result = temp;
+    Step 4.4: while there are elements in first and second linked list
+                {
+                    if exponent of first greater than second then:
+                        {
+                            temp->coeff = first->coeff;
+                            temp->pow = first->pow;
+                            first = first->next;
+                        }
+                    else if exponent of first lesser than second then:
+                        {
+                            temp->coeff = second->coeff;
+                            temp->pow = second->pow;
+                            second = second->next;
+                        }
+                    else if exponent are equal and coefficient doesnt cancel each other:
+                        {
+                            temp->coeff = first->coeff + second->coeff;
+                            temp->pow = first->pow;
+                            first = first->next;
+                            second = second->next;
+                        }
+
+                    if (first && second)
+                    {
+                        temp->next = (struct Node *)malloc(sizeof(struct Node));
+                        temp = temp->next;
+                        temp->next = NULL;
+                    }
+                }
+    Step 4.5: while there are remaining elements in first or second linked list
+                {
+                    temp->next = (struct Node *)malloc(sizeof(struct Node));
+                    temp = temp->next;
+                    temp->next = NULL;
+
+                    if elements are remaining in first linked list
+                        {
+                            temp->coeff = first->coeff;
+                            temp->pow = first->pow;
+                            first = first->next;
+                        }
+
+                    else if elements are remaining in second linked list
+                        {
+                            temp->coeff = second->coeff;
+                            temp->pow = second->pow;
+                            second = second->next;
+                        }
+                }
+
+Step 5: Defining displayPolynomial function
+	print(Polynomial expression is: );
+    while polynomial isn't empty:
+        {
+            print poly->coeff, poly->pow
+            poly = poly->next;
+            if polynomial is not equal to null:
+                    print("+");
+        }
+    print("\n");
+
+Step 6: Defining Main function
+    Step 6.1: initialise struct Node *first = NULL;
+    Step 6.2: initialise struct Node *second = NULL;
+    Step 6.3: initialise struct Node *result = NULL;
+
+    Step 6.4: print(Enter the corresponding data:);
+    Step 6.5: print(First polynomial:);
+    Step 6.6: call function readPolynomial(&first);
+    Step 6.7: call function displayPolynomial(first);
+    Step 6.8: print(Second polynomial:);
+    Step 6.9: call function readPolynomial(&second);
+    Step 6.10: call function displayPolynomial(second);
+    Step 6.11: call function addPolynomials(&result, first, second);
+    Step 6.12: displayPolynomial(result);
+
+Step 7: Stop
