@@ -1,0 +1,82 @@
+Step 1: Start
+Step 2: Define struct node with int data and 1 pointer field next
+Step 3: Initialise node pointer head and tail as NULL
+Step 4:	Define function addNode(int data) {  
+        Step 4.1: struct node *newNode = (struct node*)malloc(sizeof(struct node));  
+        Step 4.2: newNode->data = data;  
+        Step 4.3: newNode->next = NULL;  
+           
+        Step 4.4: if(head == NULL) {  
+
+		    head = newNode;  
+		    tail = newNode;  
+        	}  
+        Step 4.5: END if
+        Step 4.6: else {   
+		    tail->next = newNode;  
+		    tail = newNode;  
+		}  
+    	}  
+	Step 4.7: END else
+Step 5: Define function removeDuplicate() {         
+        Step 5.1: struct node *current = head, *index = NULL, *temp = NULL;  
+          
+        Step 5.2: if(head == NULL) {  
+            		return;  
+        	}
+        Step 5.3: END if  
+        Step 5.4: else {  
+		    while(current not equal to NULL){  
+		        temp = current;   
+		        index = current->next;  
+                  
+		        while(index not equal to NULL) {  
+		            if(current->data == index->data) {   
+		                temp->next = index->next;  
+		            }  
+		            else {  
+		                temp = index;  
+		            }  
+		            index = index->next;  
+		        }  
+		        END while loop
+                current = current->next;  
+            }          
+        }  
+        Step 5.5: End else 
+    }  
+       
+Step 6: Define function display() {  
+        Step 6.1: Initialise struct node *current = head;  
+        Step 6.2: if(head equals to NULL) {  
+		    printf("List is empty \n");  
+		    return;  
+        	}  
+        Step 6.3: while(current not equals to NULL) {  
+            printf("%d ", current->data);  
+            current = current->next;  
+        }  
+        Step 6.4: END while
+        Step 6.5: printf("\n");     
+    }  
+          
+Step 7: Define main function {   
+    	Step 7.1: int n, d; 
+        Step 7.2:print("Enter the number of nodes: ");
+        Step 7.3:Get input from user
+        Step 7.4:for(int i = 0; i < n; i++)
+		{
+			printf("Enter the node value: ");
+			scan the user value for node as d;
+			Call function addNode(d);
+		}
+        Step 7.5: print("Originals list: \n");  
+        Step 7.6: call display() function;  
+        Step 7.7: removeDuplicate() function;  
+          
+        Step 7.8: printf("List after removing duplicates: \n");  
+        Step 7.9: Call display function  
+              
+        Step 7.10: return 0;  
+    } 
+Step 8: END  
