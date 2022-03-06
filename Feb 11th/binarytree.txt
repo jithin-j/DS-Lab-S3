@@ -1,0 +1,131 @@
+ALGORITHM:
+
+1.Start
+2.Create a self referential structure globally named node that contains int info and pointers leftchild and rightchild  as its data member.
+3.Input choice from user:
+       1.insert
+       2.preorder
+       3.postorder
+       4.inorder
+       5.delete
+       6.search
+       7.exit
+4.For procedure insert:
+    1.Dynamically allocate memory to struct node named t.
+    2.printf("Enter data....");
+    3.scanf("%d",&t->data);
+    4.t->lchild=NULL;
+    5.t->rchild=NULL;
+    6.if(root==NULL) 
+          root=t;
+    7.else
+	 {
+	  Node *pre,*cur;
+	  cur=root;
+	  while(1)
+	  {
+	   if(t->data<cur->data) { pre=cur;cur=cur->lchild;if(cur==NULL) {pre->lchild=t;break;}}
+	   else if(t->data>cur->data){ pre=cur;cur=cur->rchild;if(cur==NULL) {pre->rchild=t;break;}}
+	  else { printf("Invalid Input");exit(0);}
+           }
+	 }
+    8.End
+5.For procedure preorder:node r
+    1.if(r!=NULL)         
+         printf("%d\t",r->data);
+        And, preorder(r->lchild);
+             preorder(r->rchild);
+    2.End
+6.For procedure postorder: Node r
+    1.if(r!=NULL)
+       {
+
+         preorder(r->lchild);
+         preorder(r->rchild);
+         printf("%d\t",r->data);
+           
+       }
+     }
+    2.Node* insuc(Node *r)
+    {
+     Node *q=NULL;
+     while(r->lchild!=NULL)
+     {
+     q=r; r=r->lchild;
+     }
+     if(r->rchild!=NULL) q->lchild=r->rchild;else q->lchild=NULL;
+     return(r);
+    3.End
+7.For procedure inorder: Node r
+     1.if(r!=NULL)
+       {
+
+         inorder(r->lchild);
+         printf(" %d\t",r->data);
+         inorder(r->rchild);  
+       }
+     2.End
+8.For procedure delete: Node r
+     1.print Enter key to delete
+     2.Node *cur=root;
+      int f=0;
+     3.Node *pr=NULL;
+     4. while(cur!=NULL)
+      { 
+	  if(cur->data==d) {f=1;break;}
+        
+          if(d<cur->data) {pr=cur; cur=cur->lchild;} 
+          else if(d>cur->data){pr=cur; cur=cur->rchild;}
+       
+      }
+     5.if(f==0)  printf("key not found..!!!");
+     6.else
+       {
+       Node *t=cur;// node to be deleted...
+	//leaf nodes....
+         if(t->lchild==NULL&&t->rchild==NULL)
+          {
+            if(pr->lchild==t) pr->lchild=NULL;
+            if(pr->rchild==t) pr->rchild=NULL; 
+	       }
+     7.else if(t->lchild==NULL) // only right child exist	       
+             {
+             if(pr->lchild==t) pr->lchild=t->rchild;
+             if(pr->rchild==t) pr->rchild=t->rchild;
+             }
+             
+     8.else if(t->rchild==NULL) // only left child exist	       
+             {
+             if(pr->lchild==t) pr->lchild=t->lchild;
+             if(pr->rchild==t) pr->rchild=t->lchild;
+             }
+     9.else //both left and right child
+          {
+         Node *in=t->rchild;
+          if(in->lchild==NULL) {t->data=in->data;t->rchild=in->rchild;}
+          else {in=insuc(t->rchild);t->data=in->data;}
+
+           }
+
+          }//end of found else
+     10.End
+9.For procedure Search: 
+     1.print Enter key to search
+     2.Node *cur=root;
+      
+     3. while(cur!=NULL)
+      { nc++;
+	if(cur->data==key) 
+	  {f=1;break;}
+        
+      if(key<cur->data)  
+         cur=cur->lchild; 
+      else if
+         (key>cur->data) cur=cur->rchild;
+       
+      }
+      4. if(f)
+            print Keyfound!
+      5.else print key Not found!
+      6.End
+10.Stop
